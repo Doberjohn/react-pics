@@ -14,6 +14,10 @@ class ImageCard extends React.Component {
       this.imageRef.current.addEventListener('load', this.setSpans);
    }
 
+   componentWillUnmount() {
+      window.removeEventListener("load", this.setSpans);
+   }
+
    openImage = () => {
       window.open(this.imageRef.current.currentSrc);
    };
@@ -23,7 +27,7 @@ class ImageCard extends React.Component {
 
       const spans = Math.ceil(height / 10);
       this.setState({spans: spans});
-   }
+   };
 
    render() {
       const {description, urls} = this.props.image;
